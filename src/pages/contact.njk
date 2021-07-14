@@ -1,0 +1,33 @@
+---
+layout: page
+permalink: /contact/
+eleventyNavigation:
+  key: Contact Us
+---
+
+<div class="container">
+    <h1>Contact Us</h1>
+    <p>Fill out the form to get in touch with us. We’ll always do our best to respond within 24 hours.</p>
+
+    <form method="POST" action="./success.html" class="u-mt2 u-mb2">
+      <div class="form-row">
+        <label for="name">Name (required)</label>
+        <br />
+        <input id="name" type="text" aria-required="true" name="name" aria-describedby="name-error" />
+        <p id="name-error" class="error" hidden>Please enter your name.</p>
+      </div>
+      <div class="form-row">
+        <label for="email">Email (required)</label>
+        <br />
+        <input id="email" type="email" aria-describedby="email-error" aria-required="true" name="email" />
+        <p id="email-error" class="error" hidden>Please enter your email address.</p>
+      </div>
+      <div class="form-row">
+        <label for="question">Question or Comment</label>
+        <br />
+        <textarea id="question" type="textarea" name="question" aria-describedby="question-error" rows="5" cols="33"></textarea>
+        <p id="question-error" class="error" hidden>Please enter your email address.</p>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+</div>

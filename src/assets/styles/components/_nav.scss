@@ -1,33 +1,26 @@
-.nav {
-    &__menu {
-        display: none;
-        position: absolute;
-        left: 0;
-        right: 0;
-        background-color: #fff;
-    }
-    &__link {
-        display: block;
-        padding: 0.5em 1em;
-    }
-    &__toggle {
-        @include button-reset;
-    }
+header nav ul {
+    margin: 0;
+    padding: 0;
+}
 
-    @include mq-down(lg) {
-        &.is-open &__menu {
-            display: block;
-        }
-    }
+header nav ul li {
+    list-style-type: none;
+    display: inline-block;
+    margin: 1em;
+    justify-content: center;
+}
 
-    @include mq(lg) {
-        &__toggle {
-            display: none;
-        }
-        &__menu {
-            display: flex;
-            position: static;
-            background-color: transparent;
-        }
-    }
+header nav ul li a {
+    color: white;
+    font-size: 1.2em;
+    padding: 0.5em 0;
+}
+
+.nav__item--active {
+    text-decoration: underline;
+}
+
+header nav ul li a:hover,
+header nav ul li a:focus {
+    text-decoration: underline;
 }

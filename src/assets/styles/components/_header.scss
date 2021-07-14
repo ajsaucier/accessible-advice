@@ -1,9 +1,48 @@
-.header {
-    padding: $spacing-y 0;
+header {
+    background: black;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+}
 
-    &__inner {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+header a {
+    text-decoration: none;
+    font-family: "Roboto Slab", monospace;
+    font-weight: 700;
+}
+
+#logo-wrapper {
+    width: 10em;
+    font-size: 1.2em;
+}
+
+.logo {
+    padding: 0.5em;
+    text-align: center;
+}
+
+.logo--top {
+    background: white;
+    color: var(--text);
+}
+
+.logo--bottom {
+    background: black;
+    color: white;
+    border: 1px solid white;
+}
+
+header .wrapper,
+footer .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1em 0;
+}
+
+@media (max-width: 40em) {
+    header .wrapper, 
+    footer .wrapper {
+        display: block;
     }
 }
