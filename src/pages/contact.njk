@@ -8,7 +8,7 @@ eleventyNavigation:
 
 <div class="container">
     <h1>Contact Us</h1>
-    <p>Fill out the form to get in touch with us. We’ll always do our best to respond within 24 hours.</p>
+    <p>Fill out the form below to get in touch with us, and we'll let you know if we're able to help.</p>
 
     <form method="POST" class="u-mt2 u-mb2" novalidate action="/thanks" data-netlify="true">
       <div class="form-row">
@@ -21,7 +21,7 @@ eleventyNavigation:
         <label for="email">Email (required)</label>
         <br />
         <input id="email" type="email" aria-describedby="email-error" aria-required="true" name="email" />
-        <p id="email-error" class="error" hidden>Please enter a valid email address.</p>
+        <p id="email-error" class="error" hidden>Please enter your email address.</p>
       </div>
       <div class="form-row">
         <label for="question">Question or Comment</label>
@@ -59,7 +59,7 @@ function checknameField(event) {
     if (nameField.value === "") {
         nameFieldError.removeAttribute("hidden");
         nameField.setAttribute("aria-invalid", "true");
-        nameField.setAttribute("aria-describedby", "nameField-error");
+        nameField.setAttribute("aria-describedby", "name-error");
         event.preventDefault();
     } else {
         nameFieldError.setAttribute("hidden", "true");
@@ -72,12 +72,18 @@ function checkEmail(event) {
     if (email.value === "" || email.validity.typeMismatch) {
         emailError.removeAttribute("hidden");
         email.setAttribute("aria-invalid", "true");
-        email.setAttribute("aria-describedby", "email-error email-info");
+        email.setAttribute("aria-describedby", "email-error");
         event.preventDefault();
     } else {
         emailError.setAttribute("hidden", "true");
         email.setAttribute("aria-invalid", "false");
         email.removeAttribute("aria-describedby");
+    }
+
+    if (email.value.length > 0 && email.validity.typeMismatch) {
+      emailError.textContent = "Please enter a valid email address";
+    } else {
+      emailError.textContent = "Please enter your email address";
     }
 }
 </script>
