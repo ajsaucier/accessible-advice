@@ -26,7 +26,8 @@ form textarea {
 
 @media (min-width: 48em) {
     form input,
-    form textarea {
+    form textarea,
+    .error {
         max-width: 80ch;
     }
 }
@@ -72,8 +73,8 @@ form p {
 }
 
 .error {
-    background: var(--error-color);
-    color: white;
+    color: var(--error-color);
+    font-weight: 700;
     padding: 0.5rem;
 }
 

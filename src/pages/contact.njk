@@ -9,7 +9,7 @@ eleventyNavigation:
     <h1>Contact Us</h1>
     <p>Fill out the form to get in touch with us. We’ll always do our best to respond within 24 hours.</p>
 
-    <form method="POST" action="./success.html" class="u-mt2 u-mb2">
+    <form method="POST" action="#" class="u-mt2 u-mb2" novalidate>
       <div class="form-row">
         <label for="name">Name (required)</label>
         <br />
@@ -20,14 +20,63 @@ eleventyNavigation:
         <label for="email">Email (required)</label>
         <br />
         <input id="email" type="email" aria-describedby="email-error" aria-required="true" name="email" />
-        <p id="email-error" class="error" hidden>Please enter your email address.</p>
+        <p id="email-error" class="error" hidden>Please enter a valid email address.</p>
       </div>
       <div class="form-row">
         <label for="question">Question or Comment</label>
         <br />
-        <textarea id="question" type="textarea" name="question" aria-describedby="question-error" rows="5" cols="33"></textarea>
-        <p id="question-error" class="error" hidden>Please enter your email address.</p>
+        <textarea id="question" type="textarea" name="question" rows="5" cols="33"></textarea>
       </div>
       <button type="submit">Submit</button>
     </form>
 </div>
+
+<script>
+"use strict";
+// Assign elements to variables
+const form = document.getElementsByTagName("form")[0];
+const nameField = document.getElementById("name");
+const nameFieldError = document.getElementById("name-error");
+const email = document.getElementById("email");
+const emailError = document.getElementById("email-error");
+const question = document.getElementById("question");
+
+form.addEventListener("submit", function (event) {
+
+    checknameField(event);
+    checkEmail(event);
+
+    // Set focus to first field with an error
+    if (nameField.value === "") {
+        nameField.focus();
+    } else if (email.value === "" || email.validity.typeMismatch) {
+        email.focus();
+    }
+});
+
+function checknameField(event) {
+    if (nameField.value === "") {
+        nameFieldError.removeAttribute("hidden");
+        nameField.setAttribute("aria-invalid", "true");
+        nameField.setAttribute("aria-describedby", "nameField-error");
+        event.preventDefault();
+    } else {
+        nameFieldError.setAttribute("hidden", "true");
+        nameField.setAttribute("aria-invalid", "false");
+        nameField.removeAttribute("aria-describedby");
+    }
+}
+
+function checkEmail(event) {
+    if (email.value === "" || email.validity.typeMismatch) {
+        emailError.removeAttribute("hidden");
+        email.setAttribute("aria-invalid", "true");
+        email.setAttribute("aria-describedby", "email-error email-info");
+        event.preventDefault();
+    } else {
+        emailError.setAttribute("hidden", "true");
+        email.setAttribute("aria-invalid", "false");
+        email.removeAttribute("aria-describedby");
+    }
+}
+</script>
