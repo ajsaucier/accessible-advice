@@ -4,6 +4,7 @@ layout: page
 permalink: /contact/
 eleventyNavigation:
   key: Contact Us
+  order: 3
 ---
 
 <div class="container">
@@ -14,13 +15,13 @@ eleventyNavigation:
       <div class="form-row">
         <label for="name">Name (required)</label>
         <br />
-        <input id="name" type="text" aria-required="true" name="name" aria-describedby="name-error" />
+        <input id="name" type="text" aria-required="true" name="name" />
         <p id="name-error" class="error" hidden>Please enter your name.</p>
       </div>
       <div class="form-row">
         <label for="email">Email (required)</label>
         <br />
-        <input id="email" type="email" aria-describedby="email-error" aria-required="true" name="email" />
+        <input id="email" type="email" aria-required="true" name="email" />
         <p id="email-error" class="error" hidden>Please enter your email address.</p>
       </div>
       <div class="form-row">
@@ -42,7 +43,8 @@ const email = document.getElementById("email");
 const emailError = document.getElementById("email-error");
 const question = document.getElementById("question");
 
-form.addEventListener("submit", function (event) {
+if (document.body.contains(form)) {
+  form.addEventListener("submit", function (event) {
 
     checknameField(event);
     checkEmail(event);
@@ -53,31 +55,31 @@ form.addEventListener("submit", function (event) {
     } else if (email.value === "" || email.validity.typeMismatch) {
         email.focus();
     }
-});
+  });
 
-function checknameField(event) {
+  function checknameField(event) {
     if (nameField.value === "") {
-        nameFieldError.removeAttribute("hidden");
-        nameField.setAttribute("aria-invalid", "true");
-        nameField.setAttribute("aria-describedby", "name-error");
-        event.preventDefault();
+      nameFieldError.removeAttribute("hidden");
+      nameField.setAttribute("aria-invalid", "true");
+      nameField.setAttribute("aria-describedby", "name-error");
+      event.preventDefault();
     } else {
-        nameFieldError.setAttribute("hidden", "true");
-        nameField.setAttribute("aria-invalid", "false");
-        nameField.removeAttribute("aria-describedby");
+      nameFieldError.setAttribute("hidden", "true");
+      nameField.setAttribute("aria-invalid", "false");
+      nameField.removeAttribute("aria-describedby");
     }
-}
+  }
 
-function checkEmail(event) {
+  function checkEmail(event) {
     if (email.value === "" || email.validity.typeMismatch) {
-        emailError.removeAttribute("hidden");
-        email.setAttribute("aria-invalid", "true");
-        email.setAttribute("aria-describedby", "email-error");
-        event.preventDefault();
+      emailError.removeAttribute("hidden");
+      email.setAttribute("aria-invalid", "true");
+      email.setAttribute("aria-describedby", "email-error");
+      event.preventDefault();
     } else {
-        emailError.setAttribute("hidden", "true");
-        email.setAttribute("aria-invalid", "false");
-        email.removeAttribute("aria-describedby");
+      emailError.setAttribute("hidden", "true");
+      email.setAttribute("aria-invalid", "false");
+      email.removeAttribute("aria-describedby");
     }
 
     if (email.value.length > 0 && email.validity.typeMismatch) {
@@ -85,5 +87,6 @@ function checkEmail(event) {
     } else {
       emailError.textContent = "Please enter your email address";
     }
+  }
 }
 </script>
